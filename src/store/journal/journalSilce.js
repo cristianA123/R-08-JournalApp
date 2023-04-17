@@ -29,14 +29,29 @@ export const journalSlice = createSlice({
     },
     setActiveNote: (state, action) => {
         state.active = action.payload
+        state.messageSaved = ``;
     },
     setNote: (state, action) => {
         state.notes = action.payload
     },
     setSaving: (state) => {
+      state.isSaving = true
+      state.messageSaved = ``;
 
     },
-    updateNote: (state, action) => {
+    updateNote: (state, {payload}) => {
+
+      state.isSaving = false;
+      state.notes = state.notes.map( note => {
+
+        if ( note.id !== payload.id ) return note;
+        return {
+          ...note,
+          ...payload
+        }
+      })
+
+      state.messageSaved = `${payload.title}, actualizada correctamente`;
 
     },
     deleteNodeById: (state, action) => {
