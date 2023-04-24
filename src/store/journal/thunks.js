@@ -47,9 +47,10 @@ export const startSaveNote = () => {
 
         const {active: note} = getState().journal;
 
-        const noteToFireStore = {...note}
+        const noteToFireStore = {...note};
+        
         delete noteToFireStore.id;
-        (noteToFireStore.imageUrls) ? noteToFireStore.imageUrls : [];
+        (noteToFireStore.imageUrls) ? noteToFireStore.imageUrls : "aa";
 
         const docRef = doc( FirebaseDB, `${uid}/journal/notes/${note.id}` )
         await setDoc( docRef, noteToFireStore, { merge: true } )

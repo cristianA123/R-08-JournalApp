@@ -39,7 +39,7 @@ export const journalSlice = createSlice({
       state.messageSaved = ``;
 
     },
-    updateNote: (state, {payload}) => {
+    updateNote: (state, action) => {
 
       state.isSaving = false;
       state.notes = state.notes.map( note => {
@@ -51,7 +51,7 @@ export const journalSlice = createSlice({
         return note;
       })
 
-      state.messageSaved = `${payload.title}, actualizada correctamente`;
+      state.messageSaved = `${action.payload.title}, actualizada correctamente`;
 
     },
 
