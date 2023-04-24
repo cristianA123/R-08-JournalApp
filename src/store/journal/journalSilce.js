@@ -71,7 +71,16 @@ export const journalSlice = createSlice({
 
     },
 
-    deleteNodeById: (state, action) => {
+    deleteNoteById: (state, action) => {
+
+      // 1. forma mas larga de eliminar
+      // state.active = null;
+      // const indice = state.notes.findIndex( note => note.id === action.payload )
+      // state.notes.splice(indice, 1)
+
+      // 2. forma mas corta de eliminar
+      state.active = null;
+      state.notes = state.notes.filter( note => note.id !== action.payload)
 
     },
    
@@ -86,7 +95,7 @@ export const {
     setNote,
     setSaving,
     updateNote,
-    deleteNodeById,
+    deleteNoteById,
     setPhotosToActiveNote,
     clearNotesLogout
  } = journalSlice.actions
